@@ -1,0 +1,26 @@
+<!doctype>
+<html>
+	<head></head>
+	<body>
+		<input type="text" id="search-url"></input>
+		<button id="search-btn">Search</button>
+	</body>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('#search-btn').on('click',function(){
+				var url = $('#search-url').val();
+				console.log(url);
+				$.ajax({
+				  type: "POST",
+				  url: "/search",
+				  data: JSON.stringify({ 'url': url }),
+				  contentType: 'application/json;charset=UTF-8',
+				  success: function(response){
+				  	console.log(response.result);
+				  }
+				});
+			});
+		});
+	</script>
+</html>
